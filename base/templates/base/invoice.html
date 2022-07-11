@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Invoice Form</h3>
+
+        <!-- Recipient Form -->
+        <div class="mx-5 card">
+            <div class="m-2">
+                <div class="card-header">
+                    <h5>Detials of Recipient</h5>
+                </div>
+                <div>
+                    <label class="form-label">{{rcpt_form.name.label}}</label>
+                    {{rcpt_form.name}}
+                    <label class="form-label">{{rcpt_form.address.label}}</label>
+                    {{rcpt_form.address}}
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">{{rcpt_form.gstin.label}}</label>
+                            {{rcpt_form.gstin}}
+                        </div>
+                        <div class="col">
+                        <label class="form-label">{{rcpt_form.contact_number.label}}</label>
+                        {{rcpt_form.contact_number}}
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Details Form -->
+        <div class="mx-5 my-3  card">
+            <div class="m-2">
+                <div class="card-header">
+                   <h5>Invoice Details</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">{{inv_det_form.invoice_no.label}}</label>
+                        {{inv_det_form.invoice_no}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">{{inv_det_form.invoice_date.label}}</label>
+                        {{inv_det_form.invoice_date}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">{{inv_det_form.invoice_due.label}}</label>
+                        {{inv_det_form.invoice_due}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <button type="submit">Upload</button>
+    </form>
+
+{% endblock content %}
