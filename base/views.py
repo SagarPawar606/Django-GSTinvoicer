@@ -2,7 +2,9 @@ from django.shortcuts import redirect, render
 from .forms import (UserRegistrationForm, 
                     OrganizationProfileForm, 
                     RecipientDetailsFrom,
-                    InvoiceDetialsForm)
+                    InvoiceDetialsForm,
+                    ItemDetialsForm,
+                    TaxForm)
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -45,13 +47,21 @@ def invoice(request):
     if request.method == 'POST':
         rcpt_form = RecipientDetailsFrom()
         inv_detail_form = InvoiceDetialsForm()
-        if rcpt_form.is_valid() and inv_detail_form.is_valid():
+        item_form = ItemDetialsForm()
+        tax_form = TaxForm()
+        if rcpt_form.is_valid() and inv_detail_form.is_valid() and item_form.is_valid() and tax_form.is_valid():
             pass
     else:
         rcpt_form = RecipientDetailsFrom()
         inv_detail_form = InvoiceDetialsForm()
-
-    context = {'rcpt_form' : rcpt_form, 'inv_det_form' : inv_detail_form}
+        item_form = ItemDetialsForm()
+        tax_form = TaxForm()
+        
+    context = {'rcpt_form' : rcpt_form, 
+                'inv_det_form' : inv_detail_form, 
+                'item_form':item_form,
+                'tax_form': tax_form,    
+                }
     
     return render(request, 'base/invoice.html', context)
 
