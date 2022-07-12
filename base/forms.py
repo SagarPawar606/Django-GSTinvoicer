@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import OrganizationlDetials
 from datetime import date
+from django.forms import formset_factory
 
 class UserRegistrationForm(UserCreationForm):
     organization_name = forms.CharField(max_length=255)
@@ -20,7 +21,7 @@ class OrganizationProfileForm(forms.ModelForm):
 
 
 class RecipientDetailsForm(forms.Form):
-    name = forms.CharField(max_length=10,
+    rcpt_name = forms.CharField(max_length=10, label='Recipient Name',
             widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Recipient Name'}))
     b_address = forms.CharField(max_length=10, required=False, label='Billing Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Billing Address'}))
@@ -64,6 +65,6 @@ class ExtraChargesForm(forms.Form):
             widget=forms.NumberInput(attrs={'class':'form-control'}))
     
 
-
+ItemsFormset = formset_factory(ItemDetialsForm, extra=2, can_delete=True)
 
     

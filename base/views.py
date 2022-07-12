@@ -3,8 +3,8 @@ from .forms import (UserRegistrationForm,
                     OrganizationProfileForm, 
                     RecipientDetailsForm,
                     InvoiceDetialsForm,
-                    ItemDetialsForm,
-                    ExtraChargesForm)
+                    ExtraChargesForm,
+                    ItemsFormset)
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -45,21 +45,22 @@ def orgnization_profile(request):
 @login_required
 def invoice(request):
     if request.method == 'POST':
-        rcpt_form = RecipientDetailsForm()
-        inv_detail_form = InvoiceDetialsForm()
-        item_form = ItemDetialsForm()
-        extra_form = ExtraChargesForm()
-        if rcpt_form.is_valid() and inv_detail_form.is_valid() and item_form.is_valid() and tax_form.is_valid():
-            pass
+        rcpt_form = RecipientDetailsForm(request.POST)
+        inv_detail_form = InvoiceDetialsForm(request.POST)
+        item_formset = ItemsFormset(request.POST)
+        extra_form = ExtraChargesForm(request.POST)
+        if rcpt_form.is_valid() and inv_detail_form.is_valid() and item_formset.is_valid() and extra_form.is_valid():
+            name = rcpt_form.cleaned_data['rcpt_name']
+            print(name)
     else:
         rcpt_form = RecipientDetailsForm()
         inv_detail_form = InvoiceDetialsForm()
-        item_form = ItemDetialsForm()
+        item_formset = ItemsFormset()
         extra_form = ExtraChargesForm()
         
     context = {'rcpt_form' : rcpt_form, 
                 'inv_det_form' : inv_detail_form, 
-                'item_form':item_form,
+                'item_formset':item_formset,
                 'extra_form': extra_form,    
                 }
     
