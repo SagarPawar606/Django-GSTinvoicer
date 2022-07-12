@@ -13,10 +13,8 @@
                     <h5>Detials of Recipient</h5>
                 </div>
                 <div>
-                    <label class="form-label">{{rcpt_form.name.label}}</label>
+                    <label class="form-label">{{rcpt_form.name.label}} *</label>
                     {{rcpt_form.name}}
-                    <label class="form-label">{{rcpt_form.address.label}}</label>
-                    {{rcpt_form.address}}
                     <div class="row">
                         <div class="col">
                             <label class="form-label">{{rcpt_form.gstin.label}}</label>
@@ -26,6 +24,16 @@
                         <label class="form-label">{{rcpt_form.contact_number.label}}</label>
                         {{rcpt_form.contact_number}}
                         </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Address</label>
+                            {{rcpt_form.b_address}}
+                        </div>
+                        <div class="col">
+                            <label class="mt-4"></label>
+                            {{rcpt_form.s_address}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,11 +47,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">{{inv_det_form.invoice_no.label}}</label>
+                        <label class="form-label">{{inv_det_form.invoice_no.label}} *</label>
                         {{inv_det_form.invoice_no}}
                     </div>
                     <div class="col">
-                        <label class="form-label">{{inv_det_form.invoice_date.label}}</label>
+                        <label class="form-label">{{inv_det_form.invoice_date.label}} *</label>
                         {{inv_det_form.invoice_date}}
                     </div>
                     <div class="col">
@@ -66,26 +74,34 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">{{item_form.name.label}}</label>
+                        <label class="form-label">{{item_form.name.label}} *</label>
                         {{item_form.name}}
                     </div>
                     <div class="col">
                         <label class="form-label">{{item_form.description.label}}</label>
                         {{item_form.description}}
                     </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <label class="form-label">{{item_form.hsn_no.label}}</label>
                         {{item_form.hsn_no}}
                     </div>
+                </div>
+                <div class="row">
                     <div class="col">
-                        <label class="form-label">{{item_form.price.label}}</label>
+                        <label class="form-label">{{item_form.price.label}} *</label>
                         {{item_form.price}}
                     </div>
                     <div class="col">
-                        <label class="form-label">{{item_form.quantity.label}}</label>
+                        <label class="form-label">{{item_form.quantity.label}} *</label>
                         {{item_form.quantity}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">{{item_form.cgst.label}} *</label>
+                        {{item_form.cgst}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">{{item_form.sgst.label}} *</label>
+                        {{item_form.sgst}}
                     </div>
                 </div>
             </div>
@@ -94,20 +110,16 @@
         <div class="mx-5 my-3  card">
             <div class="m-2">
                 <div class="card-header">
-                   <h5>Tax Details</h5>
+                   <h5>Other Charges</h5>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">{{tax_form.discount.label}}</label>
-                        {{tax_form.discount}}
+                        <label class="form-label">{{extra_form.discount.label}}</label>
+                        {{extra_form.discount}}
                     </div>
                     <div class="col">
-                        <label class="form-label">{{tax_form.cgst.label}}</label>
-                        {{tax_form.cgst}}
-                    </div>
-                    <div class="col">
-                        <label class="form-label">{{tax_form.sgst.label}}</label>
-                        {{tax_form.sgst}}
+                        <label class="form-label">{{extra_form.shipping.label}}</label>
+                        {{extra_form.shipping}}
                     </div>
                 </div>
             </div>

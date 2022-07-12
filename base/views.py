@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
 from .forms import (UserRegistrationForm, 
                     OrganizationProfileForm, 
-                    RecipientDetailsFrom,
+                    RecipientDetailsForm,
                     InvoiceDetialsForm,
                     ItemDetialsForm,
-                    TaxForm)
+                    ExtraChargesForm)
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -45,22 +45,22 @@ def orgnization_profile(request):
 @login_required
 def invoice(request):
     if request.method == 'POST':
-        rcpt_form = RecipientDetailsFrom()
+        rcpt_form = RecipientDetailsForm()
         inv_detail_form = InvoiceDetialsForm()
         item_form = ItemDetialsForm()
-        tax_form = TaxForm()
+        extra_form = ExtraChargesForm()
         if rcpt_form.is_valid() and inv_detail_form.is_valid() and item_form.is_valid() and tax_form.is_valid():
             pass
     else:
-        rcpt_form = RecipientDetailsFrom()
+        rcpt_form = RecipientDetailsForm()
         inv_detail_form = InvoiceDetialsForm()
         item_form = ItemDetialsForm()
-        tax_form = TaxForm()
+        extra_form = ExtraChargesForm()
         
     context = {'rcpt_form' : rcpt_form, 
                 'inv_det_form' : inv_detail_form, 
                 'item_form':item_form,
-                'tax_form': tax_form,    
+                'extra_form': extra_form,    
                 }
     
     return render(request, 'base/invoice.html', context)
