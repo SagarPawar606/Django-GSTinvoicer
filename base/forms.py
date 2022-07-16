@@ -65,6 +65,6 @@ class ExtraChargesForm(forms.Form):
             widget=forms.NumberInput(attrs={'class':'form-control'}))
     
 
-ItemsFormset = formset_factory(ItemDetialsForm, extra=2, can_delete=True)
+ItemsFormset = formset_factory(ItemDetialsForm, extra=1)
 
     

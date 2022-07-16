@@ -73,50 +73,56 @@
                 <div class="card-header">
                    <h5>Item Details</h5>
                 </div>
-
                 {{ item_formset.management_form  }}
-                <table>
                 {% for item_form in item_formset %}
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">{{item_form.name.label}} *</label>
-                        {{item_form.name}}
+                    <div class="card mx-2 my-2">
+                        <div class="card-header">
+                            <p>Item - {{ forloop.counter }}</p>
+                        </div>
+                        <div class="m-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">{{item_form.name.label}} *</label>
+                                    {{item_form.name}}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">{{item_form.description.label}}</label>
+                                    {{item_form.description}}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">{{item_form.hsn_no.label}}</label>
+                                    {{item_form.hsn_no}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label">{{item_form.price.label}} *</label>
+                                    {{item_form.price}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label">{{item_form.quantity.label}} *</label>
+                                    {{item_form.quantity}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label">{{item_form.cgst.label}} *</label>
+                                    {{item_form.cgst}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label">{{item_form.sgst.label}} *</label>
+                                    {{item_form.sgst}}
+                                </div>
+                            </div>
+                            <div>
+                                {{item_form.DELETE}}
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label">{{item_form.description.label}}</label>
-                        {{item_form.description}}
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">{{item_form.hsn_no.label}}</label>
-                        {{item_form.hsn_no}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <label class="form-label">{{item_form.price.label}} *</label>
-                        {{item_form.price}}
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <label class="form-label">{{item_form.quantity.label}} *</label>
-                        {{item_form.quantity}}
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <label class="form-label">{{item_form.cgst.label}} *</label>
-                        {{item_form.cgst}}
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <label class="form-label">{{item_form.sgst.label}} *</label>
-                        {{item_form.sgst}}
-                    </div>
-                </div>
-                <div>
-                    {{item_form.DELETE}}
-                </div>
                 {% endfor %}
-                </table>
             </div>
         </div>
-        <!-- TAX FORM -->
+
+        <!-- OTHER CHARGES FORM -->
         <div class="mx-5 my-3  card">
             <div class="m-2">
                 <div class="card-header">

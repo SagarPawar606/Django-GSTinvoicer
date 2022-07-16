@@ -67,3 +67,21 @@ def invoice(request):
     return render(request, 'base/invoice.html', context)
 
 
+def item_test(request):
+    if request.method == 'POST':
+        formset = ItemsFormset(request.POST)
+        if formset.is_valid():
+            print('formset is valid')
+            print(formset)
+            for form in formset:
+                if form.is_valid():
+                    print(['FORMS'])
+                    print(form)
+                    
+    else:
+        formset = ItemsFormset()
+    
+    context = {
+        'item_formset':formset
+    }
+    return render(request, 'base/itemform.html', context)
