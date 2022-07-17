@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
+{% load static %}
 <div class="container-md">
 <h3>Invoice Form</h3>
     <form method="POST">
@@ -31,7 +31,10 @@
                             {{rcpt_form.b_address}}
                         </div>
                         <div class="col-md-6">
-                            <label class="mt-4"></label>
+                            <div class="row mt-2">
+                                <label class="form-label">{{rcpt_form.addr_chk_box}} {{rcpt_form.addr_chk_box.label}}</label>
+                            </div>
+                            <label class="row"></label>
                             {{rcpt_form.s_address}}
                         </div>
                     </div>
@@ -71,14 +74,32 @@
         <div class="mx-5 my-3  card">
             <div class="m-2">
                 <div class="card-header">
-                   <h5>Item Details</h5>
+                    <h5>Item Details</h5>
                 </div>
                 {{ item_formset.management_form  }}
                 {% for item_form in item_formset %}
-                    <div class="card mx-2 my-2">
+                    <div class="card mx-2 my-2 form-row">
                         <div class="card-header">
-                            <p>Item - {{ forloop.counter }}</p>
+                            <p>Item - <span class="item-counter">1</span></p>
                         </div>
+
+                        {% if item_form.errors %}
+                            <div class="alert alert-error">
+                            <ul>
+                                {% for field in item_form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <li>{{field.label}} {{ error|escape }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% if item_form.non_field_errors %}
+                                {{ item_form.non_field_errors }}
+                            {% endif %}
+                            </div>
+                        {% endif %}
+
                         <div class="m-2">
                             <div class="row">
                                 <div class="col-md-4">
@@ -113,12 +134,15 @@
                                 </div>
                             </div>
                             <div>
-                                {{item_form.DELETE}}
+                                <button class="btn add-form-row my-2" type="button" style="display:none;"></button>
                             </div>
                         </div>
-                        
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-info add-form-row my-2" type="button">Add Item</button>
                     </div>
                 {% endfor %}
+                
             </div>
         </div>
 
@@ -144,4 +168,6 @@
 </form>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'base/invoiceform.js' %}"></script>
 {% endblock content %}

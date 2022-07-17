@@ -72,11 +72,10 @@ def item_test(request):
         formset = ItemsFormset(request.POST)
         if formset.is_valid():
             print('formset is valid')
-            print(formset)
             for form in formset:
                 if form.is_valid():
                     print(['FORMS'])
-                    print(form)
+                    
                     
     else:
         formset = ItemsFormset()

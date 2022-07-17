@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
+{% load static %}
 <div class="container">
     <form method="POST">
         {% csrf_token %}
@@ -15,8 +15,26 @@
                 {% for item_form in item_formset %}
                     <div class="card mx-2 my-2 form-row">
                         <div class="card-header">
-                            <p>Item - <span id="item-counter">1</span></p>
+                            <p>Item - <span class="item-counter">1</span></p>
                         </div>
+
+                        {% if item_form.errors %}
+                            <div class="alert alert-error">
+                            <ul>
+                                {% for field in item_form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <li>{{field.label}} {{ error|escape }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% if item_form.non_field_errors %}
+                                {{ item_form.non_field_errors }}
+                            {% endif %}
+                            </div>
+                        {% endif %}
+
                         <div class="m-2">
                             <div class="row">
                                 <div class="col-md-4">
@@ -51,9 +69,12 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="btn btn-outline-info add-form-row my-2" type="button">Add Item</button>
+                                <button class="btn add-form-row my-2" type="button" style="display:none;"></button>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-info add-form-row my-2" type="button">Add Item</button>
                     </div>
                 {% endfor %}
                 
@@ -64,7 +85,8 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
+<script src="{% static 'base/invoiceform.js' %}"></script>
+<!-- <script>
     function updateElementIndex(el, prefix, ndx) {
         var id_regex = new RegExp('(' + prefix + '-\\d+)');
         var replacement = prefix + '-' + ndx;
@@ -74,7 +96,6 @@
     }
     function cloneMore(selector, prefix) {
         var newElement = $(selector).clone(true);
-        console.log(newElement[0]);
         var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
         newElement.find(':input:not([type=button]):not([type=submit]):not([type=reset])').each(function() {
             var name = $(this).attr('name').replace('-' + (total-1) + '-', '-' + total + '-');
@@ -92,11 +113,14 @@
         total++;
         $('#id_' + prefix + '-TOTAL_FORMS').val(total);
         $(selector).after(newElement);
-        var conditionRow = $('.form-row:not(:last)');
+        var conditionRow = $('.form-row:last');
         conditionRow.find('.btn.add-form-row')
         .removeClass('btn-outline-info').addClass('btn btn-outline-danger')
         .removeClass('add-form-row').addClass('remove-form-row')
+        .removeAttr('style')
         .html('<span class="glyphicon glyphicon-minus" aria-hidden="true">Remove Item</span>')
+        conditionRow.find('.item-counter')
+        .html(total)
         return false;
     }
     function deleteForm(prefix, btn) {
@@ -114,12 +138,6 @@
         return false;
     }
 
-    $.ajax({
-    url: "http://127.0.0.1:8000/itemform/", //your url to call
-    success: function(){ //your function that is a callback
-        $(this).addClass("done");
-    }
-    });
     const max_form_count = 10
     let form_count = 1
     $(document).on('click', '.add-form-row', function(e){
@@ -139,5 +157,5 @@
         form_count--
         return false;
     });
-</script>
+</script> -->
 {% endblock content %}

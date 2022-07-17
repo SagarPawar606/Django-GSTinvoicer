@@ -25,6 +25,7 @@ class RecipientDetailsForm(forms.Form):
             widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Recipient Name'}))
     b_address = forms.CharField(max_length=10, required=False, label='Billing Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Billing Address'}))
+    addr_chk_box = forms.BooleanField(required=False, label='Both addresses are same')
     s_address = forms.CharField(max_length=10, required=False, label='Shipping Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Shipping Address'}))
     gstin = forms.CharField(max_length=15, required=False, label='GSTIN NO',
@@ -44,19 +45,19 @@ class InvoiceDetialsForm(forms.Form):
     
 class ItemDetialsForm(forms.Form):
     name = forms.CharField(max_length=255, label='Item Name',
-            widget=forms.TextInput(attrs={'class':'form-control'}))
+            widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
     description = forms.CharField(max_length=255, required=False, label='Description',
             widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Short Description'}))
     hsn_no = forms.CharField(max_length=10, label='HSN/SAC code', required=False,
             widget=forms.TextInput(attrs={'class':'form-control'}))
     price = forms.DecimalField(decimal_places=2, label='Unit Price',
-            widget=forms.NumberInput(attrs={'class':'form-control'}))
+            widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
     quantity = forms.IntegerField(initial=1 ,label='Quantity', min_value=1,
-             widget=forms.NumberInput(attrs={'class':'form-control'}))
+             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
     cgst = forms.DecimalField(initial=9.0, decimal_places=2, label='CGST %', min_value=0,
-             widget=forms.NumberInput(attrs={'class':'form-control'}))
+             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
     sgst = forms.DecimalField(initial=9.0, decimal_places=2, label='SGST %', min_value=0,
-            widget=forms.NumberInput(attrs={'class':'form-control'}))
+            widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
 
 class ExtraChargesForm(forms.Form):
     discount = forms.DecimalField(decimal_places=2, label='Discount', required=False,
