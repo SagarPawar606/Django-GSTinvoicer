@@ -23,13 +23,13 @@ class OrganizationProfileForm(forms.ModelForm):
 class RecipientDetailsForm(forms.Form):
     rcpt_name = forms.CharField(max_length=10, label='Recipient Name',
             widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Recipient Name'}))
-    b_address = forms.CharField(max_length=10, required=False, label='Billing Address',
+    b_address = forms.CharField(max_length=255, required=False, label='Billing Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Billing Address'}))
     addr_chk_box = forms.BooleanField(required=False, label='Both addresses are same')
-    s_address = forms.CharField(max_length=10, required=False, label='Shipping Address',
+    s_address = forms.CharField(max_length=255, required=False, label='Shipping Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Shipping Address'}))
     gstin = forms.CharField(max_length=15, required=False, label='GSTIN NO',
-            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'15 digits no.'}))
+            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'15 digit no.'}))
     contact_number = forms.CharField(required=False, label='Contact Number',
             widget=forms.TextInput(attrs={'class':'form-control'}))
 
@@ -40,11 +40,11 @@ class InvoiceDetialsForm(forms.Form):
             widget=forms.TextInput(attrs={'type':'date', 'class':'form-control'}))
     delivery_date = forms.DateField(label='Delivery Date', required=False, 
             widget=forms.TextInput(attrs={'type':'date', 'class':'form-control'}))
-    invoice_due = forms.DateField(label='Due Date', required=False, 
+    due_date = forms.DateField(label='Due Date', required=False, 
             widget=forms.TextInput(attrs={'type':'date', 'class':'form-control'}))
     
 class ItemDetialsForm(forms.Form):
-    name = forms.CharField(max_length=255, label='Item Name',
+    item_name = forms.CharField(max_length=255, label='Item Name',
             widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
     description = forms.CharField(max_length=255, required=False, label='Description',
             widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Short Description'}))
@@ -60,9 +60,9 @@ class ItemDetialsForm(forms.Form):
             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
 
 class ExtraChargesForm(forms.Form):
-    discount = forms.DecimalField(decimal_places=2, label='Discount', required=False,
+    discount = forms.DecimalField(initial=0, min_value=0, decimal_places=2, label='Discount', required=False,
             widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Discount on Total'}))
-    shipping = forms.DecimalField(decimal_places=2, label='Shipping Charges', required=False,
+    shipping = forms.DecimalField(initial=0, min_value=0, decimal_places=2, label='Shipping Charges', required=False,
             widget=forms.NumberInput(attrs={'class':'form-control'}))
     
 

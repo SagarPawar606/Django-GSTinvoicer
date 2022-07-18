@@ -32,6 +32,7 @@ function cloneMore(selector, prefix) {
     .html('<span class="glyphicon glyphicon-minus" aria-hidden="true">Remove Item</span>')
     conditionRow.find('.item-counter')
     .html(total)
+
     return false;
 }
 function deleteForm(prefix, btn) {
@@ -59,11 +60,11 @@ function copyaddress(IsChecked){
     else{
         if(IsChecked==true){
             shipping_addr.value = address
-            shipping_addr.setAttribute('disabled','')
+             shipping_addr.setAttribute('readonly','')
         }
-        else{
-            shipping_addr.removeAttribute('disabled','')
-        }
+         else{
+             shipping_addr.removeAttribute('readonly','')
+         }
     }
 }
 
