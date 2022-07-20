@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'base/invoice.css' %}"> -->
+
+<div class="m-5">
+    <div class="row">
+        <!-- User Detials -->
+        <div class="col-6">
+            <h3>{{org.org_name}}</h3>
+            <p>Address : {{org.address}} <br> 
+                Contact No. : {{org.contact_no}} <br>
+                Email : {{org.email}} <br>
+                Website : {{org.website}} <br>
+                GSTIN NO. : {{org.gstin}}
+            </p>
+        </div>
+        <!-- Invoice Detials -->
+        <div class="col-4">
+            <h5>Invoice No : {{invoice_detail.invoice_no}}</h5>
+            <p>
+                Invoice Date : {{invoice_detail.invoice_date|date:"d/m/Y"}} <br>
+                Delivery Date : {{invoice_detail.delivery_date|date:"d/m/Y"}} <br>
+                Due Date : {{invoice_detail.due_date|date:"d/m/Y"}} <br>
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Recipient Detials -->
+    <h5>To : </h5>
+    <div class="row">
+        <div class="col">
+            <h4>{{invoice_detail.rcpt_name}}</h4>
+            <p>
+                GSTIN No. : {{invoice_detail.gstin}} <br>
+                Contact No. : {{invoice_detail.contact_number}} <br>
+            </p>
+        </div>
+        <div class="col">
+            <h5>Billing Address :</h5>
+            <p>{{invoice_detail.b_address}}</p> 
+        </div>
+        <div class="col">
+            <h5>Shipping Address :</h5>
+            <p>{{invoice_detail.s_address}}</p> 
+        </div>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="col-4">Item Name</th>
+                <th scope="col">Hsn No</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">CGST %</th>
+                <th scope="col">SGST %</th>
+                <th scope="col">Final Amnt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in items.items %}
+            <tr>
+                <th scope="row">{{key}}</th>
+                <td>{{value.item_name}} <br> <small class="mx-2">({{value.description}})</small></td>
+                <td>{{value.hsn_no}}</td>
+                <td>{{value.price}}</td>
+                <td>{{value.quantity}}</td>
+                <td>{{value.gst_exclusive_price}}</td>
+                <td>{{value.cgst_amnt}} <br> ({{value.cgst}} %)</td>
+                <td>{{value.sgst_amnt}} <br> ({{value.sgst}} %)</td>
+                <td>{{value.gst_inclusive_price}}</td>
+            </tr>
+            {% endfor %}
+            <!-- Total pricing row -->
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total : </td>
+                <td>{{pricing.before_tax_total}}</td>
+                <td></td>
+                <td></td>
+                <td>{{pricing.after_tax_total}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <p>Amount in words : <b>{{pricing.total_in_words}} Rs. only</b></p>
+            <hr>
+            <p><b> Bank Detials </b><br>
+            <p>UPI No. : {{org.upi}} <br>
+            Bank Name : {{org.bank_name}} <br>
+            Branch Name : {{org.branch_name}} <br>
+            Account No. {{org.account_no}}<br>
+            IFSC code : {{org.ifsc_code}}</p> <br>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">Taxable Amount : </div>
+                <div class="col text-end me-4">{{pricing.before_tax_total}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Total tax amount : </div>
+                <div class="col text-end me-4">{{pricing.total_tax_amount}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Total amount : </div>
+                <div class="col text-end me-4">{{pricing.after_tax_total}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Discount : </div>
+                <div class="col text-end me-4">- {{pricing.discount}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Shipping : </div>
+                <div class="col text-end me-4">+ {{pricing.shipping}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Grand Total : </div>
+                <div class="col text-end me-4"><b>{{pricing.grand_total}}</b></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}

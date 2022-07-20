@@ -17,7 +17,8 @@ class UserRegistrationForm(UserCreationForm):
 class OrganizationProfileForm(forms.ModelForm):
     class Meta:
         model = OrganizationlDetials
-        fields = ['org_name', 'email', 'gstin', 'address', 'contact_no', 'website']
+        fields = ['org_name', 'email', 'gstin', 'address', 'contact_no', 
+                'website', 'upi', 'bank_name', 'branch_name', 'account_no', 'ifsc_code']
 
 
 class RecipientDetailsForm(forms.Form):
@@ -54,9 +55,9 @@ class ItemDetialsForm(forms.Form):
             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
     quantity = forms.IntegerField(initial=1 ,label='Quantity', min_value=1,
              widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
-    cgst = forms.DecimalField(initial=9.0, decimal_places=2, label='CGST %', min_value=0,
+    cgst = forms.DecimalField(initial=9, decimal_places=2, label='CGST %', min_value=1,
              widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
-    sgst = forms.DecimalField(initial=9.0, decimal_places=2, label='SGST %', min_value=0,
+    sgst = forms.DecimalField(initial=9, decimal_places=2, label='SGST %', min_value=1,
             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
 
 class ExtraChargesForm(forms.Form):

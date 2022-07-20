@@ -11,6 +11,12 @@ class OrganizationlDetials(models.Model):
     contact_no = models.CharField(max_length=100, verbose_name='Contact Number', null=True, blank=True)
     website = models.URLField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    upi = models.CharField(max_length=100, verbose_name='UPI No', null=True, blank=True)
+    bank_name = models.CharField(max_length=255, verbose_name='Bank Name', blank=True, null=True)
+    branch_name = models.CharField(max_length=255, verbose_name='Branch Name', blank=True, null=True)
+    account_no = models.CharField(max_length=50, verbose_name='Account No', null=True, blank=True)
+    ifsc_code = models.CharField(max_length=50, verbose_name='IFSC Code', null=True, blank=True)
+
 
     def __str__(self) -> str:
         return self.user.username + ' Profile'
