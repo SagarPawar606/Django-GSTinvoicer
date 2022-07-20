@@ -8,12 +8,12 @@
     <div class="row">
         <!-- User Detials -->
         <div class="col-6">
-            <h3>{{org.org_name}}</h3>
-            <p>Address : {{org.address}} <br> 
-                Contact No. : {{org.contact_no}} <br>
-                Email : {{org.email}} <br>
-                Website : {{org.website}} <br>
-                GSTIN NO. : {{org.gstin}}
+            <h3>{{user.organizationldetials.org_name}}</h3>
+            <p>Address : {{user.organizationldetials.address}} <br> 
+                <i class="bi bi-telephone"></i><br>
+                Email : {{user.organizationldetials.email}} <br>
+                Website : {{user.organizationldetials.website}} <br>
+                GSTIN NO. : {{user.organizationldetials.gstin}}
             </p>
         </div>
         <!-- Invoice Detials -->
@@ -96,11 +96,11 @@
             <p>Amount in words : <b>{{pricing.total_in_words}} Rs. only</b></p>
             <hr>
             <p><b> Bank Detials </b><br>
-            <p>UPI No. : {{org.upi}} <br>
-            Bank Name : {{org.bank_name}} <br>
-            Branch Name : {{org.branch_name}} <br>
-            Account No. {{org.account_no}}<br>
-            IFSC code : {{org.ifsc_code}}</p> <br>
+            <p>UPI No. : {{user.organizationldetials.upi}} <br>
+            Bank Name : {{user.organizationldetials.bank_name}} <br>
+            Branch Name : {{user.organizationldetials.branch_name}} <br>
+            Account No. {{user.organizationldetials.account_no}}<br>
+            IFSC code : {{user.organizationldetials.ifsc_code}}</p> <br>
         </div>
         <div class="col">
             <div class="row">

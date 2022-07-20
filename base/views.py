@@ -60,7 +60,6 @@ def invoice(request):
         invoice_dict = {}
         items_dict = {}
         pricing_dict = {}
-        org_detail_dict = {}
 
         if rcpt_form.is_valid() and inv_detail_form.is_valid() and extra_form.is_valid() and item_formset.is_valid():
             # recipient details
@@ -124,25 +123,11 @@ def invoice(request):
             total_in_words = num2words(grand_total)
             pricing_dict['total_in_words'] = total_in_words.title()
 
-            #get the request users data
-            org = OrganizationlDetials.objects.get(user=request.user)
-            org_detail_dict['org_name'] = org.org_name
-            org_detail_dict['gstin'] = org.gstin
-            org_detail_dict['address'] = org.address
-            org_detail_dict['contact_no'] = org.contact_no
-            org_detail_dict['website'] = org.website
-            org_detail_dict['email'] = org.email
-            org_detail_dict['upi'] = org.upi
-            org_detail_dict['bank_name'] = org.bank_name
-            org_detail_dict['branch_name'] = org.branch_name
-            org_detail_dict['account_no'] = org.account_no
-            org_detail_dict['ifsc_code'] = org.ifsc_code
-            
             context = {
                 'invoice_detail':invoice_dict,
                 'items':items_dict,
                 'pricing':pricing_dict,
-                'org':org_detail_dict,
+                
             }
             return render(request, 'base/generated_invoice.html', context)
     else:
