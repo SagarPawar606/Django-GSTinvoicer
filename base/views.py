@@ -8,8 +8,14 @@ from .forms import (UserRegistrationForm,
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views import View
 from pprint import pprint
 from num2words import num2words
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 # Create your views here.
 
 def register_user(request):
@@ -123,13 +129,12 @@ def invoice(request):
             total_in_words = num2words(grand_total)
             pricing_dict['total_in_words'] = total_in_words.title()
 
-            context = {
+            pdf_context_data = {
                 'invoice_detail':invoice_dict,
                 'items':items_dict,
                 'pricing':pricing_dict,
-                
             }
-            return render(request, 'base/generated_invoice.html', context)
+            return render(request, 'base/pdf_invoice1.html', pdf_context_data)
     else:
         rcpt_form = RecipientDetailsForm()
         inv_detail_form = InvoiceDetialsForm()

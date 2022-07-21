@@ -22,7 +22,7 @@ class OrganizationProfileForm(forms.ModelForm):
 
 
 class RecipientDetailsForm(forms.Form):
-    rcpt_name = forms.CharField(max_length=10, label='Recipient Name',
+    rcpt_name = forms.CharField(max_length=255, label='Recipient Name',
             widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Recipient Name'}))
     b_address = forms.CharField(max_length=255, required=False, label='Billing Address',
             widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'placeholder': 'Billing Address'}))
@@ -49,7 +49,7 @@ class ItemDetialsForm(forms.Form):
             widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
     description = forms.CharField(max_length=255, required=False, label='Description',
             widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Short Description'}))
-    hsn_no = forms.CharField(max_length=10, label='HSN/SAC code', required=False,
+    hsn_no = forms.CharField(max_length=50, label='HSN/SAC code', required=False,
             widget=forms.TextInput(attrs={'class':'form-control'}))
     price = forms.DecimalField(decimal_places=2, label='Unit Price',
             widget=forms.NumberInput(attrs={'class':'form-control','required':'required'}))
