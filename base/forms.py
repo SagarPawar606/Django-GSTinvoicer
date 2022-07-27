@@ -8,17 +8,43 @@ from datetime import date
 from django.forms import formset_factory
 
 class UserRegistrationForm(UserCreationForm):
-    organization_name = forms.CharField(max_length=255)
-
+    organization_name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password', 'placeholder':'password'}),
+    )
+    password2 = forms.CharField(
+        label="Confirm password",
+        widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password', 'placeholder':'Confirm password'}),
+    )
     class Meta:
         model = User
-        fields = ['username', 'organization_name', 'password1', 'password2']
+        fields = ('username', 'organization_name')
+
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Username'}),
+        }
 
 class OrganizationProfileForm(forms.ModelForm):
     class Meta:
         model = OrganizationlDetials
-        fields = ['org_name', 'email', 'gstin', 'address', 'contact_no', 
-                'website', 'upi', 'bank_name', 'branch_name', 'account_no', 'ifsc_code']
+        fields = ('org_name', 'email', 'gstin', 'address', 'contact_no', 
+                'website', 'upi', 'bank_name', 'branch_name', 'account_no', 'ifsc_code')
+
+        widgets = {
+            'org_name': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Name'}),
+            'email': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'youremail@mail.com'}),
+            'gstin': forms.TextInput(attrs={'class':'form-control', 'placeholder': '15 digit no.'}),
+            'address': forms.Textarea(attrs={'class':'form-control', 'rows':3, 'placeholder': 'Org. Address'}),
+            'contact_no': forms.TextInput(attrs={'class':'form-control'}),
+            'website': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'www.yourorg.com'}),
+            'upi': forms.TextInput(attrs={'class':'form-control',}),
+            'bank_name': forms.TextInput(attrs={'class':'form-control',}),
+            'branch_name': forms.TextInput(attrs={'class':'form-control',}),
+            'account_no': forms.TextInput(attrs={'class':'form-control',}),
+            'ifsc_code': forms.TextInput(attrs={'class':'form-control',}),
+
+        }
 
 
 class RecipientDetailsForm(forms.Form):

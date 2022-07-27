@@ -2,10 +2,31 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="contianer">
+    <h3>Login</h3>
     <form method="POST">
         {% csrf_token %}
-        {{form|crispy}}
-        <button type="submit">LOGIN</button>
-    </form>
+        
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {{field.errors}}
+                {% endfor %}
+            </div>
+        {% endif %}
 
+        <div class="mx-5 my-3 card">
+            <div class="m-5">
+                    <label class="form-label mt-1">{{form.username.label}}</label>
+                    <input class='form-control' type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+                    <label class="form-label mt-1">{{form.password.label}}</label>
+                    <input class='form-control' type="password" name="password" autocomplete="current-password" required id="id_password">
+                    <p>Dont have an account ? <a href="{% url 'sign-up' %}">Signup!</a> </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary px-5 m-4">Login</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

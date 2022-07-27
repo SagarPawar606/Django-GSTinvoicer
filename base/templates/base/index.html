@@ -9,5 +9,7 @@
     {% else %}
     <h5>Welcome, anonymous</h5>
     <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'sign-up' %}">Signup</a>
+   
     {% endif %}
 {% endblock %}

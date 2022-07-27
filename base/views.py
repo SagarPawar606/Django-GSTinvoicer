@@ -17,6 +17,8 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 # Create your views here.
+def index(request):
+    return render(request, 'base/index.html')
 
 def register_user(request):
     if request.method == "POST":
@@ -35,8 +37,7 @@ def register_user(request):
         form = UserRegistrationForm()
     return render(request, 'base/registration.html', {'form':form})
 
-def index(request):
-    return render(request, 'base/index.html')
+
 
 @login_required
 def orgnization_profile(request):

@@ -1,4 +1,5 @@
-/* body{
-    margin:0 auto;
-   width:960px;
-} */
+body{
+    background-image: url('back.jpg');
+    background-attachment: fixed;
+    background-size: contain;
+}
