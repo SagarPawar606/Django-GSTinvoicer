@@ -18,7 +18,7 @@
         {% endif %}
         
         <!-- Recipient Form -->
-        <div class="mx-5 my-3 card">
+        <div class="mx-5 my-3 card bg-transparent">
             <div class="m-2">
                 <div class="card-header">
                     <h5>Detials of Recipient</h5>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Invoice Details Form -->
-        <div class="mx-5 my-3  card">
+        <div class="mx-5 my-3  card bg-transparent">
             <div class="m-2">
                 <div class="card-header">
                    <h5>Invoice Details</h5>
@@ -82,14 +82,14 @@
 
         <!-- Item Details Form -->
         {{ formset.management_form }}
-        <div class="mx-5 my-3  card">
+        <div class="mx-5 my-3  card bg-transparent">
             <div class="m-2">
                 <div class="card-header">
                     <h5>Item Details</h5>
                 </div>
                 {{ item_formset.management_form  }}
                 {% for item_form in item_formset %}
-                    <div class="card mx-2 my-2 form-row">
+                    <div class="card mx-2 my-2 form-row bg-transparent">
                         <div class="card-header">
                             <p>Item - <span class="item-counter">1</span></p>
                         </div>
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-outline-info add-form-row my-2" type="button">Add Item</button>
+                        <button class="btn btn-info add-form-row my-2" type="button">Add Item</button>
                     </div>
                 {% endfor %}
                 
@@ -158,7 +158,7 @@
         </div>
 
         <!-- OTHER CHARGES FORM -->
-        <div class="mx-5 my-3  card">
+        <div class="mx-5 my-3  card bg-transparent">
             <div class="m-2">
                 <div class="card-header">
                    <h5>Other Charges</h5>

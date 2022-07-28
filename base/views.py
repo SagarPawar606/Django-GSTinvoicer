@@ -1,3 +1,4 @@
+from urllib.robotparser import RequestRate
 from django.shortcuts import redirect, render
 from .forms import (UserRegistrationForm, 
                     OrganizationProfileForm, 
@@ -35,7 +36,7 @@ def register_user(request):
             return redirect('index')
     else:
         form = UserRegistrationForm()
-    return render(request, 'base/registration.html', {'form':form})
+    return render(request, 'base/registration.html', {'form':form, 'title':'User Registration'})
 
 
 
@@ -145,7 +146,8 @@ def invoice(request):
         context = {'rcpt_form' : rcpt_form, 
                     'inv_det_form' : inv_detail_form, 
                     'item_formset':item_formset,
-                    'extra_form': extra_form,    
+                    'extra_form': extra_form,   
+                    'title':'Invoice Form' 
                     }
         return render(request, 'base/invoice-form.html', context)
 

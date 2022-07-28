@@ -26,7 +26,7 @@ function cloneMore(selector, prefix) {
     $(selector).after(newElement);
     var conditionRow = $('.form-row:last');
     conditionRow.find('.btn.add-form-row')
-    .removeClass('btn-outline-info').addClass('btn btn-outline-danger')
+    .removeClass('btn-outline-info').addClass('btn btn-danger')
     .removeClass('add-form-row').addClass('remove-form-row')
     .removeAttr('style')
     .html('<span class="glyphicon glyphicon-minus" aria-hidden="true">Remove Item</span>')
